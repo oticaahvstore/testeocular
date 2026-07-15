@@ -5,350 +5,594 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Teste Visual AHV Store</title>
 <style>
-/* Estilos Gerais (Desktop) */
+*{
+    box-sizing:border-box;
+}
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    /* Imagem de fundo preenchendo a página toda */
-    background-image: url('logo.png'); /* Substitua pelo caminho correto da sua imagem */
-    background-size: 90%; 
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    position: relative;
-    color: #000000; /* Texto padrão preto */
+    font-family:'Segoe UI', Roboto, Arial, sans-serif;
+    margin:0;
+    background:linear-gradient(135deg,#eef4ff,#f9fbff);
+    color:#333;
 }
-
-/* Camada de sobreposição */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(244, 246, 251, 0.6); 
-    z-index: -1;
-}
-
+/* CABEÇALHO */
 header {
-    background: transparent;
-    color: #0c3fa8;
-    text-align: center;
-    padding: 25px;
-    font-weight: bold;
+    background:linear-gradient(135deg,#062c73,#0c6fdc);
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.18);
 }
-
 header h1 {
-    font-size: 2.5em; /* Tamanho grande para desktop */
-    margin: 0 0 10px 0;
+    margin:0;
+    font-size:32px;
 }
-
 header p {
-    font-size: 1.2em;
-    margin: 0;
+    margin-top:12px;
+    font-size:17px;
+    opacity:.95;
 }
-
+/* CONTAINER */
 .container {
-    max-width: 900px;
-    margin: auto;
-    background: transparent;
-    margin-top: 20px;
-    padding: 25px;
+    max-width:650px;
+    margin:35px auto;
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
 }
-
-h2 {
-    color: #0c3fa8;
-    margin-top: 30px;
-    margin-bottom: 15px;
+/* TELA INICIAL */
+.intro {
+    text-align:center;
 }
-
-.question {
-    background: transparent;
-    border: none;
-    border-left: 5px solid #d4a017;
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 0;
+.intro h2 {
+    color:#062c73;
+    font-size:26px;
 }
-
-.question b {
-    display: block; /* Coloca o texto da pergunta em uma linha separada */
-    margin-bottom: 10px;
-    font-size: 1.1em;
+.intro p {
+    line-height:1.6;
+    font-size:16px;
 }
-
-label {
-    display: block;
-    margin: 6px 0; /* Espaçamento padrão para desktop */
-    cursor: pointer; /* Indica que é clicável */
+.beneficios {
+    text-align:left;
+    background:#f4f8ff;
+    padding:20px;
+    border-radius:15px;
+    margin:25px 0;
 }
-
+.beneficios div {
+    margin:12px 0;
+}
+/* BOTÕES */
 button {
-    background: #d4a017;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 30px;
+    width:100%;
+    background:linear-gradient(135deg,#d4a017,#f5c542);
+    color:white;
+    border:none;
+    padding:17px;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:15px;
+    transition:.3s;
+    box-shadow:0 8px 18px rgba(212,160,23,.35);
 }
-
-.result {
-    display: none;
-    margin-top: 25px;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid #ccc;
+button:hover {
+    transform:translateY(-3px);
 }
-
-.bar {
-    width: 100%;
-    height: 30px;
-    background: #ddd;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-top: 15px;
+/* ETAPAS */
+.step {
+    display:none;
 }
-
-.fill {
-    height: 100%;
-    width: 0%;
-    transition: 1s;
+.step.active {
+    display:block;
+    animation:fade .4s ease;
 }
-
+@keyframes fade {
+from {
+opacity:0;
+transform:translateY(15px);
+}
+to {
+opacity:1;
+transform:translateY(0);
+}
+}
+/* TITULOS */
+h2 {
+    text-align:center;
+    color:#062c73;
+}
+/* PERGUNTAS */
+.question {
+    background:#fff;
+    padding:22px;
+    margin-bottom:20px;
+    border-radius:16px;
+    border-left:6px solid #d4a017;
+    box-shadow:0 5px 15px rgba(0,0,0,.06);
+}
+.question b {
+    color:#062c73;
+    font-size:17px;
+}
+label {
+    display:block;
+    padding:10px;
+    margin:8px 0;
+    cursor:pointer;
+    border-radius:8px;
+    transition:.2s;
+}
+label:hover {
+    background:#eef6ff;
+}
+/* INPUT */
 input[type=text] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    background: rgba(255, 255, 255, 0.8); /* Fundo um pouco mais opaco para melhor leitura */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
-    font-size: 16px; /* Importante para evitar zoom no iPhone */
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #ccd6e5;
+    font-size:16px;
 }
-
-/* Esconde as perguntas dependentes inicialmente */
-#funcionalidade, .pergunta-oculos {
-    display: none;
+input[type=text]:focus {
+    outline:none;
+    border-color:#0c6fdc;
+    box-shadow:0 0 10px rgba(12,111,220,.25);
 }
-
-#motivo {
-    margin-top: 15px;
-    line-height: 1.6;
+/* AVISO */
+.aviso-respostas {
+    background:linear-gradient(135deg,#fff7d6,#fffdf3);
+    border:2px solid #f0c14b;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    margin-bottom:25px;
+    color:#7a5b00;
+    font-size:17px;
+    font-weight:500;
 }
-
-#score {
+/* PROGRESSO */
+.progress-bar {
+    height:12px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+.progress-fill {
+    height:100%;
+    background:linear-gradient(90deg,#d4a017,#ffd86b);
+    width:0%;
+    transition:.4s;
+}
+/* RESULTADO */
+.result {
+    display:none;
+    text-align:center;
+}
+.risk-box {
+    color:white;
+    padding:20px;
+    border-radius:15px;
+    font-size:22px;
+    font-weight:bold;
+    margin:20px 0;
+}
+.sugestao {
+    background:#f0f7ff;
+    border:1px solid #b8d8ff;
+    padding:20px;
+    border-radius:15px;
+    line-height:1.6;
+}
+/* WHATSAPP */
+.btn-whats {
+    display:inline-block;
+    margin-top:25px;
+    background:#25d366;
+    color:white;
+    text-decoration:none;
+    padding:17px 30px;
+    border-radius:12px;
+    font-weight:bold;
+}
+/* MOBILE */
+@media(max-width:650px){
+.container{
+    margin:15px;
+    padding:22px;
+}
+header h1{
+    font-size:25px;
+}
+.btn-voltar {
+    background: transparent;
+    color: #062c73;
+    border: 2px solid #062c73;
+    box-shadow: none;
     margin-top: 10px;
-    font-weight: bold;
 }
 
-
-/* ==========================================================================
-   Responsividade para Tablet e Celular (Tela com menos de 768px)
-   ========================================================================== */
-@media screen and (max-width: 768px) {
-    
-    /* Ajustes de Fundo */
-    body {
-        /* Ajusta o tamanho da logo para não cobrir tudo e ficar centralizada */
-        background-size: 90% auto; 
-        background-position: center 60px; /* Centraliza horizontalmente e move um pouco para baixo */
-        background-attachment: scroll; /* Muda para scroll no mobile para melhor performance */
-    }
-
-    body::before {
-        background: rgba(244, 246, 251, 0.85); /* Aumenta a opacidade do branco para o fundo não distrair */
-    }
-    
-    /* Ajustes do Cabeçalho */
-    header {
-        padding: 15px;
-    }
-
-    header h1 {
-        font-size: 1.8em; /* Fonte menor para mobile */
-    }
-
-    header p {
-        font-size: 1em;
-    }
-
-    /* Ajustes do Container */
-    .container {
-        padding: 15px;
-        margin-top: 10px;
-    }
-
-    /* Ajustes das Perguntas e Labels */
-    .question {
-        padding: 10px;
-        margin-bottom: 15px;
-    }
-
-    .question b {
-        font-size: 1em;
-    }
-
-    label {
-        margin: 10px 0; /* Aumenta o espaço entre as opções de rádio para facilitar o clique */
-        font-size: 1.1em; /* Aumenta levemente a fonte do label */
-    }
-
-    /* Aumenta o tamanho dos inputs de rádio e checkbox para facilitar o toque */
-    input[type="radio"], input[type="checkbox"] {
-        transform: scale(1.3); /* Aumenta o tamanho visual */
-        margin-right: 10px;    /* Dá um espaço entre o input e o texto */
-    }
-
-    /* Ajustes do Botão */
-    button {
-        width: 100%; /* Botão ocupa a largura total */
-        padding: 18px;
-        font-size: 20px; /* Botão maior e mais fácil de tocar */
-    }
-    
-    /* Ajustes dos Inputs de texto */
-    input[type=text] {
-        padding: 15px; /* Inputs maiores */
-    }
-
-    /* Ajustes dos Resultados */
-    .result {
-        padding: 15px;
-    }
-    .bar {
-        height: 25px;
-    }
+.btn-voltar:hover {
+    background: #eef4ff;
+    transform: translateY(-2px);
+}
 }
 </style>
 </head>
 <body>
-
 <header>
-    <h1>Teste de Saúde Visual</h1>
-    <p>Ótica AHV Store</p>
+<h1>👁️ Teste Visual AHV Store</h1>
+<p>Avalie sinais de desconforto visual de forma rápida e segura</p>
 </header>
-
 <div class="container">
-
-    <label>Nome:</label>
-    <input type="text" id="nome" placeholder="Seu nome completo">
-
-    <label>WhatsApp:</label>
-    <input type="text" id="whats" placeholder="(DD) 99999-9999">
-
-    <form id="quiz">
-
-        <h2>Informações Iniciais</h2>
-
-        <div class="question">
-            <b>1. Você usa óculos atualmente?</b>
-            <label><input type="radio" name="usa_oculos" onclick="mostrarFuncionalidade()"> Sim</label>
-            <label><input type="radio" name="usa_oculos" onclick="esconderFuncionalidade()"> Não</label>
-        </div>
-
-        <div class="question" id="funcionalidade">
-            <b>2. Para qual funcionalidade?</b>
-            <label><input type="radio" name="funcao" value="1"> Perto</label>
-            <label><input type="radio" name="funcao" value="1"> Longe</label>
-            <label><input type="radio" name="funcao" value="2"> Ambos</label>
-            <label><input type="radio" name="funcao" value="1"> Trabalho</label>
-        </div>
-
-        <h2>Sintomas Visuais</h2>
-
-        <div class="question"><b>3. Você sente dificuldade para enxergar de longe?</b>
-        <label><input type="radio" name="q1" value="0"> Nunca</label>
-        <label><input type="radio" name="q1" value="1"> Raramente</label>
-        <label><input type="radio" name="q1" value="2"> Às vezes</label>
-        <label><input type="radio" name="q1" value="3"> Frequentemente</label></div>
-
-        <div class="question"><b>4. Você sente dificuldade para ler de perto?</b>
-        <label><input type="radio" name="q2" value="0"> Nunca</label>
-        <label><input type="radio" name="q2" value="1"> Raramente</label>
-        <label><input type="radio" name="q2" value="2"> Às vezes</label>
-        <label><input type="radio" name="q2" value="3"> Frequentemente</label></div>
-
-        <div class="question"><b>5. Seus olhos cansam facilmente?</b>
-        <label><input type="radio" name="q3" value="0"> Nunca</label>
-        <label><input type="radio" name="q3" value="1"> Raramente</label>
-        <label><input type="radio" name="q3" value="2"> Às vezes</label>
-        <label><input type="radio" name="q3" value="3"> Frequentemente</label></div>
-
-        <div class="question"><b>6. Sente dores de cabeça após esforço visual?</b>
-        <label><input type="radio" name="q4" value="0"> Nunca</label>
-        <label><input type="radio" name="q4" value="1"> Raramente</label>
-        <label><input type="radio" name="q4" value="2"> Às vezes</label>
-        <label><input type="radio" name="q4" value="3"> Frequentemente</label></div>
-
-        <div class="question"><b>7. Seus olhos ardem ou lacrimejam?</b>
-        <label><input type="radio" name="q5" value="0"> Nunca</label>
-        <label><input type="radio" name="q5" value="1"> Raramente</label>
-        <label><input type="radio" name="q5" value="2"> Às vezes</label>
-        <label><input type="radio" name="q5" value="3"> Frequentemente</label></div>
-
-        <div class="question"><b>8. Você aperta os olhos para enxergar?</b>
-        <label><input type="radio" name="q6" value="0"> Nunca</label>
-        <label><input type="radio" name="q6" value="1"> Raramente</label>
-        <label><input type="radio" name="q6" value="2"> Às vezes</label>
-        <label><input type="radio" name="q6" value="3"> Frequentemente</label></div>
-
-        <h2>Estado dos Óculos</h2>
-
-        <div class="question pergunta-oculos"><b>9. Seu óculos está riscado?</b>
-        <label><input type="radio" name="q7" value="0"> Não</label>
-        <label><input type="radio" name="q7" value="1"> Pouco</label>
-        <label><input type="radio" name="q7" value="2"> Moderadamente</label>
-        <label><input type="radio" name="q7" value="3"> Muito</label></div>
-
-        <div class="question pergunta-oculos"><b>10. Sua armação está desconfortável?</b>
-        <label><input type="radio" name="q8" value="0"> Não</label>
-        <label><input type="radio" name="q8" value="1"> Pouco</label>
-        <label><input type="radio" name="q8" value="2"> Moderadamente</label>
-        <label><input type="radio" name="q8" value="3"> Muito</label></div>
-
-        <div class="question pergunta-oculos"><b>11. Seu óculos escorrega ou fica torto?</b>
-        <label><input type="radio" name="q9" value="0"> Não</label>
-        <label><input type="radio" name="q9" value="1"> Pouco</label>
-        <label><input type="radio" name="q9" value="2"> Moderadamente</label>
-        <label><input type="radio" name="q9" value="3"> Muito</label></div>
-
-        <h2>Histórico Oftalmológico</h2>
-
-        <div class="question"><b>12. Quando foi sua última consulta oftalmológica?</b>
-        <label><input type="radio" name="q10" value="0"> Menos de 1 ano</label>
-        <label><input type="radio" name="q10" value="1"> 1 a 2 anos</label>
-        <label><input type="radio" name="q10" value="2"> 2 a 4 anos</label>
-        <label><input type="radio" name="q10" value="3"> Mais de 4 anos</label>
-        <label><input type="radio" name="q10" value="5"> Nunca realizei esta consulta</label>
-        </div>
-
-        <div class="question pergunta-oculos"><b>13. Há quanto tempo usa seu óculos atual?</b>
-        <label><input type="radio" name="q11" value="0"> Menos de 1 ano</label>
-        <label><input type="radio" name="q11" value="1"> 1 a 2 anos</label>
-        <label><input type="radio" name="q11" value="2"> 2 a 4 anos</label>
-        <label><input type="radio" name="q11" value="3"> Mais de 4 anos</label></div>
-
-        <div class="question pergunta-oculos"><b>14. Você acha que seu grau mudou?</b>
-        <label><input type="radio" name="q12" value="0"> Não</label>
-        <label><input type="radio" name="q12" value="2"> Talvez</label>
-        <label><input type="radio" name="q12" value="3"> Sim</label></div>
-
-        <button type="button" onclick="calcular()">Ver Resultado</button>
-    </form>
-
-    <div class="result" id="resultado">
-        <h2 id="texto"></h2>
-        <p id="motivo"></p>
-        <div class="bar"><div class="fill" id="barra"></div></div>
-        <h3 id="score"></h3>
+<!-- TELA INICIAL -->
+<div class="intro" id="inicio">
+    <h2>Faça sua Avaliação Visual</h2>
+    <p>
+        Responda algumas perguntas rápidas e descubra sinais que podem indicar
+        a necessidade de atenção com sua visão.
+    </p>
+    <div class="beneficios">
+        <div>👁️ Avaliação rápida e intuitiva</div>
+        <div>📱 Ideal para usuários de celular e computador</div>
+        <div>🔎 Identificação de sinais de desconforto visual</div>
+        <div>💎 Orientação sobre tecnologias de lentes</div>
     </div>
+    <div class="aviso-respostas">
+        ⚠️ <b>SEJA SINCERO COM AS RESPOSTAS</b><br><br>
+        Suas respostas são importantes para gerar uma avaliação
+        mais adequada às suas necessidades visuais.
+    </div>
+    <button onclick="iniciarTeste()">
+        Iniciar Avaliação Visual
+    </button>
 </div>
-
+<!-- FORMULÁRIO -->
+<form id="quizForm" style="display:none;">
+<div class="progress-bar">
+<div class="progress-fill" id="progress"></div>
+</div>
+<!-- ETAPA 1 -->
+<div class="step active" id="step1">
+<h2>Dados Pessoais</h2>
+<label>Nome:</label>
+<input type="text" id="nome" required>
+<label>WhatsApp:</label>
+<input 
+type="text" 
+id="whats" 
+placeholder="(11) 99999-9999"
+maxlength="15"
+required>
+<button type="button" onclick="nextStep(2)">
+Continuar
+</button>
+</div>
+<!-- ETAPA 2 -->
+<div class="step" id="step2">
+<h2>Informações Iniciais</h2>
+<div class="question">
+<b>1. Você usa óculos atualmente?</b>
+<label>
+<input type="radio" name="usa_oculos" value="0" onclick="toggleOculos(true)">
+Sim
+</label>
+<label>
+<input type="radio" name="usa_oculos" value="0" onclick="toggleOculos(false)">
+Não
+</label>
+</div>
+<div id="funcionalidade" style="display:none;">
+<div class="question">
+<b>2. Para qual funcionalidade você mais utiliza seus óculos?</b>
+<label>
+<input type="radio" name="funcao" value="foco_perto">
+Leitura / Trabalho de perto
+</label>
+<label>
+<input type="radio" name="funcao" value="foco_longe">
+Dirigir / Distância
+</label>
+<label>
+<input type="radio" name="funcao" value="foco_ambos">
+Ambos
+</label>
+</div>
+</div>
+<button type="button" class="btn-voltar" onclick="voltarStep(1)">
+← Voltar
+</button>
+<button type="button" onclick="nextStep(3)">
+Continuar →
+</button>
+</div>
+<!-- ETAPA 3 -->
+<div class="step" id="step3">
+<h2>Sintomas Visuais</h2>
+<div class="question">
+<b>3. Dificuldade para enxergar de longe?</b>
+<label><input type="radio" name="q1" value="0"> Não</label>
+<label><input type="radio" name="q1" value="2"> Às vezes</label>
+<label><input type="radio" name="q1" value="3"> Sim</label>
+</div>
+<div class="question">
+<b>4. Dificuldade para ler de perto?</b>
+<label><input type="radio" name="q2" value="0"> Não</label>
+<label><input type="radio" name="q2" value="2"> Às vezes</label>
+<label><input type="radio" name="q2" value="3"> Sim</label>
+</div>
+<button type="button" class="btn-voltar" onclick="voltarStep(2)">
+← Voltar
+</button>
+<button type="button" onclick="nextStep(4)">
+Continuar
+</button>
+</div>
+<!-- ETAPA 4 -->
+<div class="step" id="step4">
+<h2>Sintomas Visuais</h2>
+<div class="question">
+<b>5. Seus olhos cansam facilmente?</b>
+<label><input type="radio" name="q3" value="0"> Não</label>
+<label><input type="radio" name="q3" value="2"> Às vezes</label>
+<label><input type="radio" name="q3" value="3"> Sim</label>
+</div>
+<div class="question">
+<b>6. Dores de cabeça após esforço visual?</b>
+<label><input type="radio" name="q4" value="0"> Não</label>
+<label><input type="radio" name="q4" value="2"> Às vezes</label>
+<label><input type="radio" name="q4" value="3"> Sim</label>
+</div>
+<button type="button" class="btn-voltar" onclick="voltarStep(3)">
+← Voltar
+</button>
+<button type="button" onclick="nextStep(5)">
+Continuar
+</button>
+</div>
+<!-- ETAPA 5 -->
+<div class="step" id="step5">
+<h2>Sintomas Visuais</h2>
+<div class="question">
+<b>7. Olhos ardem ou lacrimejam?</b>
+<label><input type="radio" name="q5" value="0"> Não</label>
+<label><input type="radio" name="q5" value="2"> Às vezes</label>
+<label><input type="radio" name="q5" value="3"> Sim</label>
+</div>
+<div class="question">
+<b>8. Você aperta os olhos para enxergar?</b>
+<label><input type="radio" name="q6" value="0"> Não</label>
+<label><input type="radio" name="q6" value="2"> Às vezes</label>
+<label><input type="radio" name="q6" value="3"> Sim</label>
+</div>
+<button type="button" class="btn-voltar" onclick="voltarStep(4)">
+← Voltar
+</button>
+<button type="button" onclick="nextStep(6)">
+Continuar
+</button>
+</div>
+<!-- ETAPA 6 -->
+<div class="step" id="step6">
+<h2>Histórico Visual</h2>
+<div class="question">
+<b>9. Quando foi sua última consulta?</b>
+<label><input type="radio" name="q10" value="0"> 6 meses - 1 ano</label>
+<label><input type="radio" name="q10" value="1"> 1 - 2 anos</label>
+<label><input type="radio" name="q10" value="2"> 2 - 4 anos</label>
+<label><input type="radio" name="q10" value="3"> Mais de 4 anos</label>
+<label><input type="radio" name="q10" value="5"> Nunca realizei</label>
+</div>
+<div class="question">
+<b>10. Acha que seu grau mudou?</b>
+<label><input type="radio" name="q12" value="0"> Não</label>
+<label><input type="radio" name="q12" value="2"> Talvez</label>
+<label><input type="radio" name="q12" value="3"> Sim</label>
+</div>
+<button type="button" class="btn-voltar" onclick="voltarStep(5)">
+← Voltar
+</button>
+<button type="button" onclick="calculateResult()">
+Ver Resultado
+</button>
+</div>
+</form>
+<!-- RESULTADO -->
+<div class="result" id="resultado">
+<h2 id="msgResultado"></h2>
+<div id="riskBox" class="risk-box"></div>
+<p id="motivo"></p>
+<div id="sugestaoLente" class="sugestao"></div>
+<a id="btnWhats" class="btn-whats" target="_blank">
+💬 Falar com Especialista AHV Store
+</a>
+</div>
 <script>
-    // Mantive seu JavaScript original intacto
-    let usaOculos =
+function voltarStep(step){
+
+    document.querySelectorAll(".step")
+    .forEach(s=>s.classList.remove("active"));
+
+    document.getElementById("step"+step)
+    .classList.add("active");
+
+
+    document.getElementById("progress").style.width =
+    ((step-1) * 16.6) + "%";
+
+}    
+function iniciarTeste(){
+    document.getElementById("inicio").style.display="none";
+    document.getElementById("quizForm").style.display="block";
+}
+function nextStep(step){
+    document.querySelectorAll(".step")
+    .forEach(s=>s.classList.remove("active"));
+    document.getElementById("step"+step)
+    .classList.add("active");
+    document.getElementById("progress").style.width =
+    ((step-1) * 16.6) + "%";
+}
+function toggleOculos(val){
+    document.getElementById("funcionalidade").style.display =
+    val ? "block" : "none";
+}
+function calculateResult(){
+let score=0;
+document.querySelectorAll(
+'input[type="radio"]:checked'
+)
+.forEach(r=>{
+    if(!isNaN(r.value)){
+        score += parseInt(r.value);
+    }
+});
+const nome =
+document.getElementById("nome").value;
+const whats =
+document.getElementById("whats").value;
+const funcao =
+document.querySelector(
+'input[name="funcao"]:checked'
+)?.value || "foco_ambos";
+document.getElementById("quizForm")
+.style.display="none";
+document.getElementById("resultado")
+.style.display="block";
+let texto;
+let risco;
+let cor;
+let motivo;
+let sugestao;
+/* CLASSIFICAÇÃO DE RISCO */
+if(score <= 5){
+texto="Resultado dentro dos parâmetros esperados.";
+risco="🟢 Baixo Risco";
+cor="#28a745";
+motivo=
+"As respostas fornecidas não indicam sinais relevantes de desconforto visual no momento.";
+"<b>Importante:</b> Este teste é uma ferramenta de triagem e não substitui uma consulta ou exame realizado por um oftalmologista.";
+sugestao=
+"<b>Orientação:</b><br>"+
+"Mantenha seus hábitos de cuidado visual. "+
+"Para usuários de telas, lentes com tratamentos adequados podem proporcionar maior conforto durante o uso diário.";
+}
+else if(score <=10){
+texto="Foram identificados sinais de desconforto visual.";
+risco="🟡 Risco Moderado";
+cor="#ffc107";
+motivo=
+"As respostas indicam possíveis sinais de fadiga ou esforço visual, principalmente durante atividades prolongadas.";
+"<b>Importante:</b> Este teste é uma ferramenta de triagem e não substitui uma consulta ou exame realizado por um oftalmologista.";
+if(funcao==="foco_perto"){
+sugestao=
+"<b>Orientação:</b><br>"+
+"Lentes com tratamento antirreflexo e tecnologias voltadas ao conforto visual podem auxiliar em atividades de leitura e visão próxima.";
+}
+else{
+sugestao=
+"<b>Orientação:</b><br>"+
+"Lentes com tratamento antirreflexo e alta definição podem proporcionar maior conforto e qualidade visual.";
+}
+}
+else if(score <=15){
+texto=
+"Recomendamos uma avaliação oftalmológica.";
+risco=
+"🟠 Risco Elevado";
+cor="#fd7e14";
+motivo=
+"Os resultados indicam sinais que merecem atenção e podem estar relacionados à necessidade de uma avaliação da saúde ocular.";
+"<b>Importante:</b> Este teste é uma ferramenta de triagem e não substitui uma consulta ou exame realizado por um oftalmologista.";
+if(funcao==="foco_ambos"){
+sugestao=
+"<b>Orientação:</b><br>"+
+"Após avaliação profissional, lentes multifocais ou soluções personalizadas podem ser indicadas para melhorar a adaptação visual em diferentes distâncias.";
+}
+else{
+sugestao=
+"<b>Orientação:</b><br>"+
+"Após avaliação, lentes personalizadas de alta tecnologia podem ser recomendadas conforme sua necessidade visual.";
+}
+}
+else{
+texto=
+"Resultado com Alto Nível de Risco";
+risco=
+"🔴 Atenção: Resultado com Alto Nível de Risco";
+cor="#dc3545";
+motivo=
+"As respostas fornecidas indicam sinais que merecem uma avaliação oftalmológica especializada.<br><br>"+
+"<b>Importante:</b> Este teste é uma ferramenta de triagem e não substitui uma consulta ou exame realizado por um oftalmologista.";
+sugestao=
+"<b>Próximo Passo:</b><br>"+
+"Recomendamos agendar uma avaliação completa da sua saúde ocular.<br><br>"+
+"<b>Após a avaliação:</b><br>"+
+"Caso seja indicado o uso de óculos, lentes de alta performance com tratamentos adequados poderão proporcionar maior conforto, proteção e qualidade visual.";
+}
+/* MOSTRA RESULTADO */
+document.getElementById("msgResultado")
+.innerHTML =
+"👁️ Sua Avaliação Visual";
+document.getElementById("riskBox")
+.innerHTML =
+risco;
+document.getElementById("riskBox")
+.style.background =
+cor;
+document.getElementById("motivo")
+.innerHTML =
+"<b>"+texto+"</b><br><br>"+motivo;
+document.getElementById("sugestaoLente")
+.innerHTML =
+sugestao;
+/* WHATSAPP */
+let objetivo =
+funcao==="foco_perto"
+?"visão de perto"
+:
+funcao==="foco_longe"
+?"visão de longe"
+:
+"visão para todas as distâncias";
+let mensagem =
+`Olá, meu nome é ${nome}. 
+Realizei o Teste Visual AHV Store e meu resultado foi ${risco}.
+Tenho maior necessidade em ${objetivo}.
+Gostaria de receber uma orientação personalizada sobre lentes.`;
+let numero =
+whats.replace(/\D/g,"");
+document.getElementById("btnWhats")
+.href =
+"https://wa.me/55"+numero+
+"?text="+encodeURIComponent(mensagem);
+}
+/* MÁSCARA WHATSAPP */
+const campoWhats =
+document.getElementById("whats");
+campoWhats.addEventListener("input",function(){
+let valor=this.value.replace(/\D/g,"");
+if(valor.length>11){
+valor=valor.substring(0,11);
+}
+if(valor.length>6){
+valor=
+valor.replace(
+/^(\d{2})(\d{5})(\d{0,4}).*/,
+"($1) $2-$3"
+);
+}
+else if(valor.length>2){
+valor=
+valor.replace(
+/^(\d{2})(\d{0,5})/,
+"($1) $2"
+);
+}
+this.value=valor;
+});
+</script>
+</body>
+</html>
